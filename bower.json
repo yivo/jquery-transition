@@ -1,20 +1,17 @@
 {
   "name": "jquery-transition",
-  "homepage": "https://github.com/yivo/jquery-transition",
-  "authors": [
-    "Yaroslav Konoplov <yaroslav@inbox.com>"
-  ],
   "description": "transitionEnd event + $.fn.emulateTransitionEnd",
   "main": "build/jquery-transition.js",
+  "authors": [
+    "Yaroslav Konoplov <eahome00@gmail.com>"
+  ],
   "license": "MIT",
+  "homepage": "https://github.com/yivo/jquery-transition",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
-    "tests",
-    "coffeespec",
-    "source",
-    "spec"
+    "tests"
   ]
 }

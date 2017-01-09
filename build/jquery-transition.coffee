@@ -45,12 +45,15 @@
   
   # http://blog.alexmaccaw.com/css-transitions
   $.fn.emulateTransitionEnd = (duration) ->
-    called = no
+    called = false
     $el    = this
-    $el.one 'transitionEnd', -> called = yes
+    $el.one 'transitionEnd', -> 
+      called = true
+      return
   
     callback = ->
-      $el.trigger($.support.transition.end) unless called
+      if not called
+        $el.trigger($.support.transition.end)
       return
   
     setTimeout(callback, duration)
@@ -59,13 +62,17 @@
   $ ->
     $.support.transition = transitionEnd()
   
-    return unless $.support.transition
-  
-    $.event.special.transitionEnd =
-      bindType:     $.support.transition.end,
-      delegateType: $.support.transition.end,
-      handle:       (e) -> e.handleObj.handler.apply(this, arguments) if $(e.target).is(this)
-  
+    if $.support.transition
+      handler = (e) ->
+        if e.target is this
+          e.handleObj.handler.apply(this, arguments)
+        return
+        
+      $.event.special.transitionEnd =
+        bindType:     $.support.transition.end
+        delegateType: $.support.transition.end
+        handle:       handler
+    return
   # No global variable export
   return
 )

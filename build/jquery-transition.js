@@ -37,7 +37,7 @@
       called = false;
       $el = this;
       $el.one('transitionEnd', function() {
-        return called = true;
+        called = true;
       });
       callback = function() {
         if (!called) {
@@ -48,19 +48,20 @@
       return this;
     };
     $(function() {
+      var handler;
       $.support.transition = transitionEnd();
-      if (!$.support.transition) {
-        return;
-      }
-      return $.event.special.transitionEnd = {
-        bindType: $.support.transition.end,
-        delegateType: $.support.transition.end,
-        handle: function(e) {
-          if ($(e.target).is(this)) {
-            return e.handleObj.handler.apply(this, arguments);
+      if ($.support.transition) {
+        handler = function(e) {
+          if (e.target === this) {
+            e.handleObj.handler.apply(this, arguments);
           }
-        }
-      };
+        };
+        $.event.special.transitionEnd = {
+          bindType: $.support.transition.end,
+          delegateType: $.support.transition.end,
+          handle: handler
+        };
+      }
     });
   });
 
