@@ -1,17 +1,22 @@
+
+/*!
+ * jquery-transition-support 1.0.2 | https://github.com/yivo/jquery-transition-support | MIT License
+ */
+
 (function() {
   (function(factory) {
-    var root;
-    root = typeof self === 'object' && self !== null && self.self === self ? self : typeof global === 'object' && global !== null && global.global === global ? global : void 0;
+    var __root__;
+    __root__ = typeof self === 'object' && self !== null && self.self === self ? self : typeof global === 'object' && global !== null && global.global === global ? global : Function('return this')();
     if (typeof define === 'function' && typeof define.amd === 'object' && define.amd !== null) {
-      define(['jquery', 'exports'], function($) {
-        return factory(root, document, $);
+      define(['jquery'], function($) {
+        return factory(__root__, document, setTimeout, $);
       });
     } else if (typeof module === 'object' && module !== null && typeof module.exports === 'object' && module.exports !== null) {
-      factory(root, document, require('jquery'));
+      factory(__root__, document, setTimeout, require('jquery'));
     } else {
-      factory(root, document, root.$);
+      factory(__root__, document, setTimeout, $);
     }
-  })(function(__root__, document, $) {
+  })(function(__root__, document, setTimeout, $) {
     var transitionEnd;
     transitionEnd = function() {
       var el, name, transEndEventNames;

@@ -1,4 +1,6 @@
-# Taken from bootstrap: https://github.com/twbs/bootstrap/blob/master/js
+# Credits to:
+#  * bootstrap CSS framework: https://github.com/twbs/bootstrap
+#  * blog.alexmaccaw.com:     http://blog.alexmaccaw.com/css-transitions
 
 transitionEnd = ->
   el = document.createElement('div')
@@ -15,7 +17,6 @@ transitionEnd = ->
 
   false
 
-# http://blog.alexmaccaw.com/css-transitions
 $.fn.emulateTransitionEnd = (duration) ->
   called = false
   $el    = this

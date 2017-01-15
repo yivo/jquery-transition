@@ -1,17 +1,27 @@
 {
-  "name": "jquery-transition",
+  "name": "jquery-transition-support",
   "description": "transitionEnd event + $.fn.emulateTransitionEnd",
-  "main": "build/jquery-transition.js",
+  "main": "build/jquery-transition-support.js",
   "authors": [
     "Yaroslav Konoplov <eahome00@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/yivo/jquery-transition",
+  "keywords": [
+    "jquery",
+    "transition",
+    "support",
+    "event",
+    "emulateTransitionEnd"
+  ],
+  "homepage": "https://github.com/yivo/jquery-transition-support",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "jquery": ">=1.9.1"
+  }
 }

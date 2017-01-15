@@ -1,21 +1,22 @@
 gulp    = require 'gulp'
 concat  = require 'gulp-concat'
 coffee  = require 'gulp-coffee'
-iife    = require 'gulp-iife-wrap'
+umd     = require 'gulp-umd-wrap'
 plumber = require 'gulp-plumber'
+fs      = require 'fs'
 
 gulp.task 'default', ['build', 'watch'], ->
 
 gulp.task 'build', ->
-  dependencies = [{global: 'document', native:  true},
-                  {global: '$',        require: 'jquery'}]
-  gulp.src('source/jquery-transition.coffee')
+  gulp.src('source/jquery-transition-support.coffee')
     .pipe plumber()
-    .pipe iife({dependencies})
-    .pipe concat('jquery-transition.coffee')
+    .pipe umd do ->
+                dependencies: [{global: 'document',   native:  true}
+                               {global: 'setTimeout', native:  true}
+                               {global: '$',          require: 'jquery'}]
+                header: fs.readFileSync('source/__license__.coffee')
     .pipe gulp.dest('build')
     .pipe coffee()
-    .pipe concat('jquery-transition.js')
     .pipe gulp.dest('build')
 
 gulp.task 'watch', ->

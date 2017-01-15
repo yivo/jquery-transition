@@ -1,32 +1,41 @@
+###!
+# jquery-transition-support 1.0.2 | https://github.com/yivo/jquery-transition-support | MIT License
+###
+
 ((factory) ->
 
-  # Browser and WebWorker
-  root = if typeof self is 'object' and self isnt null and self.self is self
-    self
+  __root__ = 
+    # The root object for Browser or Web Worker
+    if typeof self is 'object' and self isnt null and self.self is self
+      self
 
-  # Server
-  else if typeof global is 'object' and global isnt null and global.global is global
-    global
+    # The root object for Server-side JavaScript Runtime
+    else if typeof global is 'object' and global isnt null and global.global is global
+      global
 
-  # AMD
+    else
+      Function('return this')()
+
+  # Asynchronous Module Definition (AMD)
   if typeof define is 'function' and typeof define.amd is 'object' and define.amd isnt null
-    define ['jquery', 'exports'], ($) ->
-      factory(root, document, $)
+    define ['jquery'], ($) ->
+      factory(__root__, document, setTimeout, $)
 
-  # CommonJS
-  else if typeof module is 'object' and module isnt null and
-          typeof module.exports is 'object' and module.exports isnt null
-    factory(root, document, require('jquery'))
+  # Server-side JavaScript Runtime compatible with CommonJS Module Spec
+  else if typeof module is 'object' and module isnt null and typeof module.exports is 'object' and module.exports isnt null
+    factory(__root__, document, setTimeout, require('jquery'))
 
-  # Browser and the rest
+  # Browser, Web Worker and the rest
   else
-    factory(root, document, root.$)
+    factory(__root__, document, setTimeout, $)
 
   # No return value
   return
 
-)((__root__, document, $) ->
-  # Taken from bootstrap: https://github.com/twbs/bootstrap/blob/master/js
+)((__root__, document, setTimeout, $) ->
+  # Credits to:
+  #  * bootstrap CSS framework: https://github.com/twbs/bootstrap
+  #  * blog.alexmaccaw.com:     http://blog.alexmaccaw.com/css-transitions
   
   transitionEnd = ->
     el = document.createElement('div')
@@ -43,7 +52,6 @@
   
     false
   
-  # http://blog.alexmaccaw.com/css-transitions
   $.fn.emulateTransitionEnd = (duration) ->
     called = false
     $el    = this
@@ -73,6 +81,6 @@
         delegateType: $.support.transition.end
         handle:       handler
     return
-  # No global variable export
+  # Nothing exported
   return
 )

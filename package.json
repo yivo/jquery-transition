@@ -1,27 +1,37 @@
 {
-  "name": "jquery-transition",
-  "version": "1.0.1",
+  "name": "jquery-transition-support",
+  "version": "1.0.2",
   "description": "transitionEnd event + $.fn.emulateTransitionEnd",
-  "main": "build/jquery-transition.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "build/jquery-transition-support.js",
+  "dependencies": {
+    "jquery": ">=1.9.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yivo/jquery-transition.git"
-  },
-  "author": "Yaroslav Konoplov <eahome00@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/yivo/jquery-transition/issues"
-  },
-  "homepage": "https://github.com/yivo/jquery-transition#readme",
   "devDependencies": {
     "coffee-script": "^1.12.2",
     "gulp": "^3.9.1",
     "gulp-coffee": "^2.3.3",
     "gulp-concat": "^2.6.1",
-    "gulp-iife-wrap": "^1.0.5",
+    "gulp-umd-wrap": "^1.0.7",
     "gulp-plumber": "^1.1.0"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yivo/jquery-transition-support.git"
+  },
+  "keywords": [
+    "jquery",
+    "transition",
+    "support",
+    "event",
+    "emulateTransitionEnd"
+  ],
+  "author": "Yaroslav Konoplov <eahome00@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yivo/jquery-transition-support/issues"
+  },
+  "homepage": "https://github.com/yivo/jquery-transition-support#readme"
 }
